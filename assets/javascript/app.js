@@ -105,7 +105,7 @@ $('body').on("click", '.searchMe', function() {
             // Creating and storing an image tag
             var gifImage = $("<img>");
             // Setting the src attribute of the image to a property pulled off the result item
-            gifImage.attr("src", results[i].images.fixed_height_still.url);
+            gifImage.attr("src", results[i].images.fixed_height.url);
             gifImage.attr('data-animate', results[i].images.fixed_height.url)
             gifImage.attr('data-still', results[i].images.fixed_height_still.url)
             gifImage.attr('data-state', 'animate');
@@ -128,6 +128,7 @@ $('body').on("click", '.searchMe', function() {
   $('body').on("click", 'img', function() {
     // set get data-state info and assign to variable
     var state = $(this).attr("data-state");
+    console.log(state);
     // If the clicked image's state is still, change its src attribute to data-animate value is.
     // Then, set the image's data-state to animate
     // Else set src to the data-still value
