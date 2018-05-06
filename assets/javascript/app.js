@@ -128,7 +128,6 @@ $('body').on("click", '.searchMe', function() {
   $('body').on("click", 'img', function() {
     // set get data-state info and assign to variable
     var state = $(this).attr("data-state");
-    console.log(state);
     // If the clicked image's state is still, change its src attribute to data-animate value is.
     // Then, set the image's data-state to animate
     // Else set src to the data-still value
