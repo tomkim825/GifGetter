@@ -70,10 +70,10 @@ $('body').on("click", '.searchMe', function() {
         // iterates row number for rows to be created later
         rowNum ++;
         // create new row
-         $('<div>').addClass("row row"+rowNum).prependTo('#mainBody');
+         $('<div>').addClass("row rowGif row"+rowNum).prependTo('#mainBody');
         // create new columns (4 cols) for the newly created row above
         for (var i = 0; i < 4; i++) {
-        $('<div>').addClass('col-md-3 col-sm-6 col-6').attr('id','col'+rowNum+i).css("padding",0).appendTo(".row"+rowNum);
+        $('<div>').addClass('col-md-3 col-sm-6 col-12').attr('id','col'+rowNum+i).css("padding",0).appendTo(".row"+rowNum);
         };
         
         var randomBackground = Math.floor(Math.random()*backgroundChoices.length);
