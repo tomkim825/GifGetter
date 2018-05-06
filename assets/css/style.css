@@ -9,6 +9,15 @@ body{
     text-decoration: none;
 }
 
+#intro{
+    font-size: 7vh;
+    position: absolute;
+    display:block;
+    width:100%;
+    margin-top: 17vh;
+}
+
+
 a,
 p{
     font-size: 2vh;

@@ -51,6 +51,7 @@ $('#submit').on("click", function(event) {
 
 // on button click, ajax call happens
 $('body').on("click", '.searchMe', function() {
+    $('#intro').css('display','none');
     // on click, the body topmargin is reajusted incase the screen resolution changes. Results will display proper margin after 
     $('#mainBody').css('margin-top',($('nav').height()+10)+'px'); 
     var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
@@ -86,7 +87,7 @@ $('body').on("click", '.searchMe', function() {
         for (var i = 0; i < results.length; i++) {
             var newDiv =  $("<div>");
             // ****************************************************************
-            // rating code below. Scope of this app is "G-rating Gifs" only for the
+            // rating code below. Scope of this app is "G-rating Gifs only" for the
             // SFW theme. If it were all ratings, code below would actually be useful
             // ****************************************************************
             // var rating = '';
