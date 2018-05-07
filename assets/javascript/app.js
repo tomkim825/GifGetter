@@ -52,15 +52,21 @@ function displayHideFav(){
     } else if(!favoriteClicked){
         $('#FAVORITES').attr('class',"searchMe btn btn-lg my-auto mr-1 btn-outline-"+ buttonChoices[randomButton]+" text-dark bg-"+ buttonChoices[randomButton]);
         favoriteClicked = true;
-        $('.favoriteRow').css('display','block');
-        $('.favoriteRow1').css('display','block').attr('class',"row favoriteRow1 description bg-" + backgroundChoices[randomBackground]);
+        $('.favoriteRow').css('display','');
+        $('.favoriteRow1').css('display','').attr('class',"row favoriteRow1 description bg-" + backgroundChoices[randomBackground]);
     }
 };
 
 // **********************************
 // Click events and execution of functions:
 // **********************************
-// 
+
+// trying to get local storage working:
+// if(localStorage.getItem('faves',favoriteGif) === null){
+//     favoriteGif = [];
+// } else {
+//     favoriteGif = localStorage.getItem('faves',favoriteGif)
+// };
 
 // call function to create empty favorites section
 makeFavorites();
@@ -165,7 +171,7 @@ $('body').on("click", '.searchMe', function() {
             newDiv.addClass("gifBox");
            
             // Prependng the newDiv to the HTML page in the "#mainBody" div, id col0 to col3 using modulus
-            $('#col'+rowNum+(i%4)).prepend(newDiv);
+            $('#col'+rowNum+((i+3)%4)).prepend(newDiv);
         }
       });
     } else if(this.id === "FAVORITES"){
@@ -232,9 +238,11 @@ $('body').on("click", '.gifCookie', function() {
   var favUrl = $(this).attr("data-url");
   var favUrlStill = $(this).attr("data-urlStill");
   var favObject = {"title":favName, "url": favUrl, "urlStill": favUrlStill}
-  if( favoriteGif.indexOf(favObject) == -1){
+  $(this).css("color",'white').css('background-color','red').text('Added to Favorites');
+  if( favoriteGif.indexOf(favObject) === -1){
     favoriteGif.push(favObject);
-  };
+    localStorage.setItem('faves',favoriteGif);  
+};
  
   $('#FAVORITES').text('FAVORITES: '+favoriteGif.length); 
   
@@ -246,21 +254,21 @@ $('body').on("click", '.gifCookie', function() {
   // console.log(document.cookie);
 });  
 
-function getCookie(cname) {
-  var name = cname + "=";
-  var decodedCookie = decodeURIComponent(document.cookie);
-  var ca = decodedCookie.split(';');
-  for(var i = 0; i <ca.length; i++) {
-      var c = ca[i];
-      while (c.charAt(0) == ' ') {
-          c = c.substring(1);
-      }
-      if (c.indexOf(name) == 0) {
-          return c.substring(name.length, c.length);
-      }
-  }
-  return "";
-}
+// function getCookie(cname) {
+//   var name = cname + "=";
+//   var decodedCookie = decodeURIComponent(document.cookie);
+//   var ca = decodedCookie.split(';');
+//   for(var i = 0; i <ca.length; i++) {
+//       var c = ca[i];
+//       while (c.charAt(0) == ' ') {
+//           c = c.substring(1);
+//       }
+//       if (c.indexOf(name) == 0) {
+//           return c.substring(name.length, c.length);
+//       }
+//   }
+//   return "";
+// }
 
 // // woking on adding cookies for favorites
 // var faves = [
