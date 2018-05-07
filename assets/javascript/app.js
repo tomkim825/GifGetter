@@ -1,4 +1,6 @@
-// initialization + global variables
+// **********************************
+// initialization + global variables:
+// **********************************
 var gifSearches = ["FAVORITES","bacon","eggs sunny side up","pancake","coffee","cereal", "oatmeal"];
 var existingButtons = gifSearches;
 var gifInput = "";
@@ -8,6 +10,13 @@ var backgroundChoices=['primary','secondary','success','danger','warning','info'
 var buttonChoices=['primary','success','danger','warning','info','light'];
 var randomButton = Math.floor(Math.random()*buttonChoices.length);
 var favoriteGif=[];
+var favoriteClicked = false;
+var favoriteCreated = false;
+
+// **********************************
+// Establish functions to be called on later:
+// **********************************
+
 // function to generate gif buttons & append to navbar. 
 function makeButton(){
     for (var i=0; i < gifSearches.length ; i++) {
@@ -20,13 +29,48 @@ function makeButton(){
     newButton.attr("id",gifSearches[i]).appendTo('#gif-buttons');
     };
 }
+
+function makeFavorites(){
+    if(!favoriteCreated){
+    var randomBackground = Math.floor(Math.random()*backgroundChoices.length);
+    // description row created to be placed above gifs
+    $('<div>').addClass("row rowGif favoriteRow").attr('id','favrow').prependTo('#mainSection');
+    $('<div>').attr('id','favrow1').addClass("row favoriteRow1 description bg-" + backgroundChoices[randomBackground]).attr('id',query+"Gifs").prependTo('#mainSection').html("<h2>Here are your favorites</h2><p>All Rated G: You already have enough to explain to your boss...<p>");         
+    $('.favoriteRow').css('display','none');
+    $('.favoriteRow1').css('display','none');
+    favoriteCreated =true;
+    };
+};
+
+function displayHideFav(){
+    var randomBackground = Math.floor(Math.random()*backgroundChoices.length);
+    if(favoriteClicked){
+        $('#FAVORITES').attr('class',"searchMe btn btn-lg my-auto mr-1 btn-outline-"+ buttonChoices[randomButton]);
+        favoriteClicked = false;
+        $('.favoriteRow').css('display','none');
+        $('.favoriteRow1').css('display','none');
+    } else if(!favoriteClicked){
+        $('#FAVORITES').attr('class',"searchMe btn btn-lg my-auto mr-1 btn-outline-"+ buttonChoices[randomButton]+" text-dark bg-"+ buttonChoices[randomButton]);
+        favoriteClicked = true;
+        $('.favoriteRow').css('display','block');
+        $('.favoriteRow1').css('display','block').attr('class',"row favoriteRow1 description bg-" + backgroundChoices[randomBackground]);
+    }
+};
+
+// **********************************
+// Click events and execution of functions:
+// **********************************
+// 
+
+// call function to create empty favorites section
+makeFavorites();
 // call function to set initial buttons on screen
 makeButton();
 // stylizes submit button and header text into random color each page refresh
 $('#title').addClass('text-'+ buttonChoices[randomButton]);
 $('#submit').addClass('btn-outline-'+ buttonChoices[randomButton]);
 
-
+// ***** Input search term for new button *******
 // when create button is clicked, the input is checked if already on the list to prevent duplicates
 // then the input is added to the list of existing terms. The gif search array is cleared and replaced with input. 
 // makeButton() called to append new button. Input field cleared for next submission
@@ -50,6 +94,7 @@ $('#submit').on("click", function(event) {
 
 // GIPHY KEY: tijQxlTuptL10zPKLPoI5zuxpjpKf7sl
 
+// ****** button click event for AJAX call ********
 // on button click, ajax call happens
 $('body').on("click", '.searchMe', function() {
     $('#intro').css('display','none');
@@ -70,7 +115,6 @@ $('body').on("click", '.searchMe', function() {
       .then(function(response) {
         // storing the data from the AJAX request in the results variable
         var results = response.data;
-        console.log(results);
         // iterates row number for rows to be created later
         rowNum ++;
         // create new row
@@ -100,7 +144,7 @@ $('body').on("click", '.searchMe', function() {
             } else if (results[i].rating === 'pg') {
                 rating = "Rated PG:"
             } else {
-                rating = "Rating: Unrated"
+                rating = "Rating: Unrated (or worse)"
             }
             // Creating a paragraph tag with the result item's rating
             var gifTitle= results[i].title;
@@ -126,27 +170,18 @@ $('body').on("click", '.searchMe', function() {
       });
     } else if(this.id === "FAVORITES"){
       if(favoriteGif.length === 0){
-         var randomBackground = Math.floor(Math.random()*backgroundChoices.length);
-
-         // description row created to be placed above gifs
-         $('<div>').text("please add some favorites and come back").addClass("row rowGif row"+rowNum).prependTo('#mainBody');
-         $('<div>').addClass("row description bg-" + backgroundChoices[randomBackground]).attr('id',query+"Gifs").prependTo('#mainBody').html("<h2>Here are your favorites</h2><p>All Rated G: You already have enough to explain to your boss...<p>");         
-        
+        $('.favoriteRow').text("please add some favorites and come back")
+        displayHideFav();
         }else{
-          // iterates row number for rows to be created later
-    rowNum ++;
-    // create new row
-     $('<div>').addClass("row rowGif row"+rowNum).prependTo('#mainBody');
+          makeFavorites();
+          displayHideFav();
+          $('.favoriteRow').empty();
+          
+     
     // create new columns (4 cols) for the newly created row above
     for (var i = 0; i < 4; i++) {
-    $('<div>').addClass('col-md-3 col-sm-6 col-12').attr('id','col'+rowNum+i).css("padding",0).appendTo(".row"+rowNum);
-    };
-    
-    var randomBackground = Math.floor(Math.random()*backgroundChoices.length);
-
-    // description row created to be placed above gifs
-    $('<div>').addClass("row description bg-" + backgroundChoices[randomBackground]).attr('id',query+"Gifs").prependTo('#mainBody').html("<h2>Here are your favorites</h2><p>All Rated G: You already have enough to explain to your boss...<p>");
-   
+    $('<div>').addClass('col-md-3 col-sm-6 col-12').attr('id','favCol'+i).css("padding",0).appendTo("#favrow");
+    };    
 
     // Looping through each result item
     for (var i = 0; i < favoriteGif.length; i++) {
@@ -168,8 +203,8 @@ $('body').on("click", '.searchMe', function() {
         newDiv.prepend(gifImage);
         newDiv.addClass("gifBox");
        
-        // Prependng the newDiv to the HTML page in the "#mainBody" div, id col0 to col3 using modulus
-        $('#col'+rowNum+(i%4)).prepend(newDiv);
+        // Prependng the newDiv to the HTML page in the "#mainSection" div, id col0 to col3 using modulus
+        $('#favCol'+(i%4)).prepend(newDiv);
         }
     }
   }   
@@ -196,11 +231,15 @@ $('body').on("click", '.gifCookie', function() {
   var favName = $(this).attr("data-name");
   var favUrl = $(this).attr("data-url");
   var favUrlStill = $(this).attr("data-urlStill");
-  favoriteGif.push({"title":favName, "url": favUrl, "urlStill": favUrlStill});
+  var favObject = {"title":favName, "url": favUrl, "urlStill": favUrlStill}
+  if( favoriteGif.indexOf(favObject) == -1){
+    favoriteGif.push(favObject);
+  };
+ 
   $('#FAVORITES').text('FAVORITES: '+favoriteGif.length); 
   
-  var stringified = JSON.stringify(favoriteGif);
-  createCookie('favoriteGif', stringified);
+//   var stringified = JSON.stringify(favoriteGif);
+//   createCookie('favoriteGif', stringified);
   // var cookieString = "url="+favUrl+"; expires=Thu, 16 May 2019 12:00:00 UTC; path=/";
   // document.cookie = cookieString;
   // console.log(cookieString);

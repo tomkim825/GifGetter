@@ -1,22 +1,16 @@
 ### File
 
-* Trivia game
+* GifGetter
 
 ### Instructions
 
 * Open the file in Chrome to start.
  
-1. Press Enter key to begin. The 10sec timer will begin 
+1. Type in term to search for gif
 
-2. Click on an answer within 10 seconds or you will get it wrong and "Time's Up" Will display.
+2. click on button with serach term to load gifs
 
-	-Correct answer will give you 1 point
-
-	-Wrong answer will not change your score
-
-3. The correct answer will display for 3 seconds. It will display correct, wrong, or time's up. A corresponding picture will display to the left
-
-4. There are 6 questions. The final page is a summary with an option to play again.
+3. add to favorites and then click on favorites to toggle favorite sections
 
 
 
