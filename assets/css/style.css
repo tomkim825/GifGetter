@@ -9,6 +9,10 @@ body{
     text-decoration: none;
 }
 
+body:hover{
+    cursor: pointer;  
+}
+
 #intro{
     font-size: 7vh;
     position: absolute;
@@ -17,12 +21,47 @@ body{
     top: 17vh;
 }
 
-
-a,
-p{
+h4{
     font-size: 2vh;
     padding: 0;
     margin:0;
+}
+
+a,
+p{
+    font-size: 1.5vh;
+    padding: 0;
+    margin:0;
+}
+
+.gifBox{
+    position:relative;
+}
+
+.gifInfo:hover{
+    border-radius: 2vh;
+}
+span{
+    color:rgb(256,0,0,0.25);
+    border:1px solid rgb(256,0,0,0.25);
+    border-radius:1vh;
+    padding: 0 1vh;
+}
+span:hover{
+    color:white;
+    background:red;
+}
+a{
+    color:rgb(0,0,256,0.25);
+    border:1px solid rgb(0,0,256,0.25);
+    border-radius:1vh;
+    padding: 0 1vh;
+    text-decoration: none;
+}
+
+a:hover{
+    color:white;
+    background: blue;
 }
 
 img{
@@ -34,23 +73,25 @@ img{
     position:relative;
     z-index: 2;
 }
-img:hover{
+
+.gifBox:hover > .gifInfo{
+    border-bottom-left-radius: 2vh;
+    border-bottom-right-radius: 2vh;
+}
+.gifBox:hover > body{
+    filter: saturate(0);
+}
+
+.gifInfo:hover,
+.gifBox:hover{
+    background: white;
     object-fit: contain;
-    transform: scale(1.1,1.1);
+    transform: scale(1.4);
     position:relative;
     z-index:98;
     display:block;
-}
-
-.infoBox{
-    height:3vh;
-    bottom:100;
-    position:absolute;
-    z-index:99;
-    background:white;
-}
-.gifbox{
-    position:relative;
+    border: 1px solid black;
+    filter: saturate(1);
 }
 
 nav{
@@ -66,10 +107,12 @@ nav{
     border-top-left-radius: 2vh;
     border-top-right-radius: 2vh;
 }
+
 .rowGif{
     border-bottom-left-radius: 2vh;
     border-bottom-right-radius: 2vh;
 }
+
 
 .row{
     border: 1px solid black;

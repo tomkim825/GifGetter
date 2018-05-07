@@ -17,15 +17,17 @@
     <div class="navbar-logo" id="title" style="float:left">G-Rated Gif Getter [keep it SFW]</div>
     <!-- upper rightside search form to enter new gif searches -->
     <form class="form-inline" style="float:right">
-            <input class="form-control mr-2 my-auto" type="search" placeholder="Search" aria-label="Search" id="gifInput">
-            <button class="btn my-sm-0" type="submit" id="submit">create button</button>
+        <input class="form-control mr-2 my-auto" type="search" placeholder="Search" aria-label="Search" id="gifInput">
+        <button class="btn my-sm-0" type="submit" id="submit">create button</button>
     </form>
     <!-- lower navbar : this div will hold generated buttons -->
     <div id="gif-buttons" style="clear:both; width:100%;"></div>
 </nav>
 <!-- intro div. Space filler and description -->
-<div id="intro">Hello there! <br> This project uses AJAX to call the Giphy API. While the initial buttons are breakfast related, feel free to add any buttons through the input feature above. Click on any button to display gifs. Gifs start animated. Click to show the still version. Page refreshes will change the header color theme. Each gif call will also make a random color theme. Thanks for looking at my site.  </div>
-<!-- this div contains the gifs. 4 columns for mobile responsiveness. 12 gifs per row on desktop , 2 or 1 on small screens-->
-<div class="container-fluid" id="mainBody"></div>
-<script src="assets/javascript/app.js"></script>
+<div id="intro">Hello there! <br> This project uses AJAX to call the Giphy API. While the initial buttons are breakfast related, feel free to add any buttons through the input feature above. Click on any button to display gifs. Gifs start non-animated. Click to show the animated version. Page refreshes will change the header color theme. Each gif button press will also make a random color theme box. Thanks for looking at my site.  </div>
+<div id="mainSection">
+    <!-- this div contains the gifs. 4 columns for mobile responsiveness. 4 gifs per row on desktop , 2 or 1 on small screens-->
+    <div class="container-fluid" id="mainBody"></div>
+</div>
+<script type="text/javascript" src="assets/javascript/app.js"></script>
 </body>
