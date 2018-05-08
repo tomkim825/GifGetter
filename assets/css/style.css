@@ -2,7 +2,7 @@
 
 body{
 	font-family: 'Work Sans', sans-serif;
-    font-size:2rem;
+    font-size:5vmin;
     font-weight: 300;
     padding-top:1vh;
     text-align:center;
@@ -14,7 +14,7 @@ body:hover{
 }
 
 #intro{
-    font-size: 7vh;
+    font-size: 7vmin;
     position: absolute;
     display:block;
     width:100%;
@@ -22,16 +22,16 @@ body:hover{
 }
 
 h4{
-    font-size: 1.5rem;
+    font-size: 1.8vmin;
     padding: 0;
     margin:0;
 }
 
 a,
 p{
-    font-size: 1rem;
-    padding: 0;
-    margin:1px;
+    font-size: 1.4vmin;
+    padding: 2px;
+    margin:2px;
 }
 
 .gifBox{
@@ -39,13 +39,13 @@ p{
 }
 
 .gifInfo:hover{
-    border-radius: 2vh;
+    border-radius: 2vmin;
 }
 span{
     color:rgb(256,0,0,0.25);
     border:1px solid rgb(256,0,0,0.25);
-    border-radius:1vh;
-    padding: 0 1vh;
+    border-radius:1vmin;
+    padding: 0 1vmin;
 }
 span:hover{
     color:white;
@@ -54,8 +54,8 @@ span:hover{
 a{
     color:rgb(0,0,256,0.25);
     border:1px solid rgb(0,0,256,0.25);
-    border-radius:1vh;
-    padding: 0 1vh;
+    border-radius:1vmin;
+    padding: 0 1vmin;
     text-decoration: none;
 }
 
@@ -67,7 +67,7 @@ a:hover{
 img{
     padding: 0;
     max-width:100%;
-    height:20vw;
+    height:33vmin;
     object-fit: cover;
     margin: 0 auto;
     position:relative;
@@ -75,8 +75,8 @@ img{
 }
 
 .gifBox:hover > .gifInfo{
-    border-bottom-left-radius: 2vh;
-    border-bottom-right-radius: 2vh;
+    border-bottom-left-radius: 2vmin;
+    border-bottom-right-radius: 2vmin;
 }
 .gifBox:hover > body{
     filter: saturate(0);
@@ -103,18 +103,18 @@ nav{
     text-align: center;
     display:block;
     color: white;
-    height: 10vh;
-    border-top-left-radius: 2vh;
-    border-top-right-radius: 2vh;
+    height: 10vmin;
+    border-top-left-radius: 2vmin;
+    border-top-right-radius: 2vmin;
 }
 
 .rowGif{
-    border-bottom-left-radius: 2vh;
-    border-bottom-right-radius: 2vh;
+    border-bottom-left-radius: 2vmin;
+    border-bottom-right-radius: 2vmin;
 }
 
 
 .row{
     border: 1px solid black;
-    margin: 0 1vw;
+    margin: 0 1vmin;
 }
