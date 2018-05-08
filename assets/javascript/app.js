@@ -52,8 +52,8 @@ function displayHideFav(){
     } else if(!favoriteClicked){
         $('#FAVORITES').attr('class',"searchMe btn btn-lg my-auto mr-1 btn-outline-"+ buttonChoices[randomButton]+" text-dark bg-"+ buttonChoices[randomButton]);
         favoriteClicked = true;
-        $('.favoriteRow').css('display','');
-        $('.favoriteRow1').css('display','').attr('class',"row favoriteRow1 description bg-" + backgroundChoices[randomBackground]);
+        $('.favoriteRow').css('display','inherit');
+        $('.favoriteRow1').css('display','inherit').attr('class',"row favoriteRow1 description bg-" + backgroundChoices[randomBackground]);
     }
 };
 
