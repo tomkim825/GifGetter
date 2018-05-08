@@ -29,9 +29,9 @@ h4{
 
 a,
 p{
-    font-size: 1vw;
-    padding: 0;
-    margin:0;
+    font-size: 0.8vw;
+    padding: 2px;
+    margin:2px;
 }
 
 .gifBox{
